@@ -1471,7 +1471,7 @@ class MonarchMoney(object):
         :param imported_from_mint: a bool to filter for whether the transactions were imported from mint.
         :param synced_from_institution: a bool to filter for whether the transactions were synced from an institution.
         :param show_all_transactions: a bool to filter for whether to include all transactions, even those that are
-                                      hidden from accounts hidden from lists, reports, and budgets. Defaults to true.
+                                      hidden from accounts hidden from lists, reports, and budgets. Defaults to True.
         """
 
         query = gql(
