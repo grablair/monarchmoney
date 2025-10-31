@@ -1450,6 +1450,7 @@ class MonarchMoney(object):
         is_recurring: Optional[bool] = None,
         imported_from_mint: Optional[bool] = None,
         synced_from_institution: Optional[bool] = None,
+        show_all_transactions: Optional[bool] = True,
     ) -> Dict[str, Any]:
         """
         Gets transaction data from the account.
@@ -1469,6 +1470,8 @@ class MonarchMoney(object):
         :param is_recurring: a bool to filter for whether the transactions are recurring.
         :param imported_from_mint: a bool to filter for whether the transactions were imported from mint.
         :param synced_from_institution: a bool to filter for whether the transactions were synced from an institution.
+        :param show_all_transactions: a bool to filter for whether to include all transactions, even those that are
+                                      hidden from accounts hidden from lists, reports, and budgets. Defaults to true.
         """
 
         query = gql(
@@ -1495,6 +1498,7 @@ class MonarchMoney(object):
             pending
             date
             hideFromReports
+            hiddenByAccount
             plaidName
             notes
             isRecurring
@@ -1573,6 +1577,9 @@ class MonarchMoney(object):
 
         if synced_from_institution is not None:
             variables["filters"]["syncedFromInstitution"] = synced_from_institution
+
+        if show_all_transactions:
+            variables["filters"]["transactionVisibility"] = "all_transactions"
 
         if start_date and end_date:
             variables["filters"]["startDate"] = start_date
