@@ -15,7 +15,7 @@ setup(
     license="MIT",
     keywords="monarch money, financial, money, personal finance",
     install_requires=install_requires,
-    packages=["monarchmoney-grablair"],
+    packages=["monarchmoney"],
     include_package_data=True,
     zip_safe=False,
     platforms="any",
